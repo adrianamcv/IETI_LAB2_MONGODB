@@ -9,7 +9,7 @@ public interface UserService
 {
     User create( User user );
 
-    User findById( String id );
+    User findById(String id );
 
     List<User> all();
 
