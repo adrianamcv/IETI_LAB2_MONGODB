@@ -1,7 +1,7 @@
 package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
-import org.ada.school.model.User;
+import org.ada.school.model.UserDocument;
 import org.ada.school.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,12 @@ public class UserServiceMongoDB implements UserService{
     }
 
     @Override
-    public User create(User user) {
-        return userRepo.save(user);
+    public UserDocument create(UserDocument userDocument) {
+        return userRepo.save(userDocument);
     }
 
     @Override
-    public User findById(String id) {
+    public UserDocument findById(String id) {
         if (userRepo.existsById(id)){
             return userRepo.findById(id).get();
         }else{
@@ -32,7 +32,7 @@ public class UserServiceMongoDB implements UserService{
     }
 
     @Override
-    public List<User> all() {
+    public List<UserDocument> all() {
         return userRepo.findAll();
     }
 
@@ -47,12 +47,12 @@ public class UserServiceMongoDB implements UserService{
     }
 
     @Override
-    public User update(UserDto userDto, String id) {
+    public UserDocument update(UserDto userDto, String id) {
         if (userRepo.existsById(id)){
-            User userId = userRepo.findById(id).get();
-            userId.update(userDto);
-            userRepo.save(userId);
-            return userId;
+            UserDocument userDocumentId = userRepo.findById(id).get();
+            userDocumentId.update(userDto);
+            userRepo.save(userDocumentId);
+            return userDocumentId;
         }else{
             return null;
         }

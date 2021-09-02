@@ -8,14 +8,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.UUID;
 
-
+@Document
 public class UserDocument
-{
 
+{
+    @Id
     String id;
 
     String name;
 
+    @Indexed( unique = true )
     String email;
 
     String lastName;
@@ -24,11 +26,10 @@ public class UserDocument
 
     public UserDocument()
     {
-    };
+    }
 
     public UserDocument(UserDto userDto )
     {
-        id = UUID.randomUUID().toString();
         name = userDto.getName();
         lastName = userDto.getLastName();
         email = userDto.getEmail();
@@ -40,8 +41,39 @@ public class UserDocument
         return name;
     }
 
-    public String getId()
-    {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -51,5 +83,4 @@ public class UserDocument
         lastName = userDto.getLastName();
         email = userDto.getEmail();
     }
-
 }
