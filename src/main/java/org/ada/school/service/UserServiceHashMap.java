@@ -1,30 +1,27 @@
 package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
-import org.ada.school.model.User;
-import org.springframework.stereotype.Service;
+import org.ada.school.model.UserDocument;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Service
-public class UserServiceHashMap
-    implements UserService
+public class UserServiceHashMap implements UserService
 {
 
-    private final HashMap<String, User> usersMap = new HashMap<>();
+    private final HashMap<String, UserDocument> usersMap = new HashMap<>();
 
 
     @Override
-    public User create( User user )
+    public UserDocument create(UserDocument userDocument)
     {
-        usersMap.put( user.getId(), user );
-        return user;
+        usersMap.put( userDocument.getId(), userDocument);
+        return userDocument;
     }
 
     @Override
-    public User findById( String id )
+    public UserDocument findById(String id )
     {
         if ( usersMap.containsKey( id ) )
         {
@@ -34,7 +31,7 @@ public class UserServiceHashMap
     }
 
     @Override
-    public List<User> all()
+    public List<UserDocument> all()
     {
         return new ArrayList<>( usersMap.values() );
     }
@@ -46,13 +43,13 @@ public class UserServiceHashMap
     }
 
     @Override
-    public User update( UserDto userDto, String id )
+    public UserDocument update(UserDto userDto, String id )
     {
         if ( usersMap.containsKey( id ) )
         {
-            User user = usersMap.get( id );
-            user.update( userDto );
-            return user;
+            UserDocument userDocument = usersMap.get( id );
+            userDocument.update( userDto );
+            return userDocument;
         }
         else
         {

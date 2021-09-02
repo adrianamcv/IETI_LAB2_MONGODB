@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Document
-public class User
+public class UserDocument
 
 {
     @Id
@@ -24,11 +24,11 @@ public class User
 
     Date createdAt;
 
-    public User()
+    public UserDocument()
     {
     }
 
-    public User( UserDto userDto )
+    public UserDocument(UserDto userDto )
     {
         name = userDto.getName();
         lastName = userDto.getLastName();
